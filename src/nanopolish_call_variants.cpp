@@ -754,9 +754,14 @@ Haplotype call_haplotype_from_candidates(const AlignmentDB& alignments,
 
             // Apply them to the final haplotype
             for(size_t vi = 0; vi < selected_variants.size(); vi++) {
+		if (selected_variants[vi].supFrac > 0.85){ //Only apply variants that are supported by more than 0.9 of the reads
+ 
+			fprintf(stderr,"Accept refseq: %s\t",selected_variants[vi].ref_seq.c_str());
+                	fprintf(stderr,"cos qual: %lf",selected_variants[vi].quality);
+                	fprintf(stderr,"and supFrac: %lf\n",selected_variants[vi].supFrac);
 
-                derived_haplotype.apply_variant(selected_variants[vi]);
-
+                	derived_haplotype.apply_variant(selected_variants[vi]);
+		}
                 if(opt::verbose > 1) {
                     selected_variants[vi].write_vcf(stderr);
                 }

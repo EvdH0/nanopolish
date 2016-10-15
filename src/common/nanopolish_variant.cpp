@@ -285,7 +285,7 @@ std::vector<Variant> select_variant_set(const std::vector<Variant>& candidate_va
                     std::string scores_str = scores.str();
                     v.add_info("Scores", scores_str.substr(0, scores_str.size() - 1));
                     */
-
+		    v.supFrac = (double)supporting_reads / input.size();
                     v.quality = best_lp - base_lp;
                 }
             }

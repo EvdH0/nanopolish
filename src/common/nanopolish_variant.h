@@ -54,7 +54,7 @@ struct Variant
 
         // VCF is 1-based but we internally represent a variant as 0-based
         ref_position -= 1;
-
+        //supFrac = 0;
         assert(!ref_name.empty());
         assert(!ref_seq.empty());
         assert(!alt_seq.empty());
@@ -81,6 +81,7 @@ struct Variant
     std::string alt_seq;
     double quality;
     std::string info;
+    double supFrac;
 };
 
 inline bool sortByPosition(const Variant& a, const Variant& b) 
